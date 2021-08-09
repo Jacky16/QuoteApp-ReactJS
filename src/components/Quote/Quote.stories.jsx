@@ -6,4 +6,4 @@ export default{
     component:Quote
 };
 
-export const QuoteExample = () => (<Quote quote="Trabaja hoy y mañana no trabajaras"></Quote>)
+export const QuoteExample = () => (<Quote></Quote>)

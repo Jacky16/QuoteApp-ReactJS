@@ -1,18 +1,28 @@
-import React from "react";
-import Proptypes from "prop-types"
+import React ,{useEffect,useState}from "react";
+import axios from "axios"
 import ButtonRandomQuote from "../ButtonRandomQuote/ButtonRandomQuote";
 
-const Quote = ({quote}) =>{
+const Quote = () =>{
+    
+    let [quoteData,setQuoteData] = useState([]);
+    
+    //Get a quote
+    const getDataQuote = () =>{
+        const url = 'https://api.quotable.io/random';
+        axios.get(url)
+        .then(response => setQuoteData(response.data))
+    }
+
+    useEffect(() => {
+       getDataQuote(setQuoteData);
+    }, []);
+
     return(
         <div>
-            {quote}
-            <p><ButtonRandomQuote author="Bill Gates"/></p>
+            {quoteData.content}
+            <p> {quoteData.author && <ButtonRandomQuote author={quoteData.author} onClikcHandler={getDataQuote}/>}</p>
         </div>
-        
     )
 }
 
-Quote.propTypes ={
-    quote: Proptypes.string.isRequired
-}
 export default Quote
