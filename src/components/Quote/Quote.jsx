@@ -1,15 +1,21 @@
 import React ,{useEffect,useState}from "react";
 import axios from "axios"
-import ListAllQuotesFromAuthor from "../ListAllQuotesFromAuthor/ListAllQuotesFromAuthor";
+import { useHistory } from "react-router-dom";
 
 const Quote = () =>{
-    
+
     let [quoteData,setQuoteData] = useState([]);
-    
+
+    //Pasar a la pagina de listas de citas
+    let history = useHistory();
+    const linkToListQuotesPage = () =>{
+        history.push(`quote/${quoteData.author}`);
+        
+    }
     //Get a quote
-    const getDataQuote = () =>{
+    const getDataQuote = async () =>{
         const url = 'https://api.quotable.io/random';
-        axios.get(url)
+        await axios.get(url)
         .then(response => setQuoteData(response.data))
     }
 
@@ -20,8 +26,10 @@ const Quote = () =>{
     return(
         <div>
             <button onClick={getDataQuote}>Random Quote</button>
-            <blockquote>{"“" + quoteData.content + "”"}</blockquote>
-            <p> {quoteData.author && <ListAllQuotesFromAuthor author={quoteData.author} onClikcHandler={null}/>}</p>
+            {<blockquote>{"“" + quoteData.content + "”"}</blockquote>}
+            <button onClick={linkToListQuotesPage}>
+            {quoteData.author}
+            </button>
         </div>
     )
 }
