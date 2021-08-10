@@ -1,6 +1,6 @@
 import React ,{useEffect,useState}from "react";
 import axios from "axios"
-import ButtonRandomQuote from "../ButtonRandomQuote/ButtonRandomQuote";
+import ListAllQuotesFromAuthor from "../ListAllQuotesFromAuthor/ListAllQuotesFromAuthor";
 
 const Quote = () =>{
     
@@ -19,8 +19,9 @@ const Quote = () =>{
 
     return(
         <div>
-            {quoteData.content}
-            <p> {quoteData.author && <ButtonRandomQuote author={quoteData.author} onClikcHandler={getDataQuote}/>}</p>
+            <button onClick={getDataQuote}>Random Quote</button>
+            <blockquote>{"“" + quoteData.content + "”"}</blockquote>
+            <p> {quoteData.author && <ListAllQuotesFromAuthor author={quoteData.author} onClikcHandler={null}/>}</p>
         </div>
     )
 }

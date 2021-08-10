@@ -1,8 +1,8 @@
 import React from "react"
-import ButtonRandomQuoteStories from "./ButtonRandomQuote"
+import ListAllQuotesFromAuthor from "./ListAllQuotesFromAuthor"
 export default{
     title: "Button",
-    component: ButtonRandomQuoteStories
+    component: ListAllQuotesFromAuthor
 }
 function showQuote(){
     fetch('https://api.quotable.io/random')
@@ -11,4 +11,4 @@ function showQuote(){
                 console.log(`${data.author}": "${data.content}`)
             })
     }
-export const ButtonQuoteExample = () => (<ButtonRandomQuoteStories author ="Bill gates" onClikcHandler={showQuote}/>)
+export const ButtonQuoteExample = () => (<ListAllQuotesFromAuthor author ="Bill gates" onClikcHandler={showQuote}/>)
