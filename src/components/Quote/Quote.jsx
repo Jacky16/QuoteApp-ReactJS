@@ -12,7 +12,7 @@ const Quote = () =>{
     let [quoteData,setQuoteData] = useState([]);
 
     //Go to page of list of quotes from the author
-    let history = useHistory();
+    const history = useHistory();
     const linkToListQuotesPage = () =>{
         history.push(`quote/${quoteData.author}`);
         
