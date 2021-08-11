@@ -2,17 +2,22 @@ import React ,{useEffect,useState}from "react";
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 
+//Material UI
+import Button from '@material-ui/core/Button';
+import AutorenewSharpIcon from '@material-ui/icons/AutorenewSharp';
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+
 const Quote = () =>{
 
     let [quoteData,setQuoteData] = useState([]);
 
-    //Pasar a la pagina de listas de citas
+    //Go to page of list of quotes from the author
     let history = useHistory();
     const linkToListQuotesPage = () =>{
         history.push(`quote/${quoteData.author}`);
         
     }
-    //Get a quote
+    //Get a random quote
     const getDataQuote = async () =>{
         const url = 'https://api.quotable.io/random';
         await axios.get(url)
@@ -25,11 +30,31 @@ const Quote = () =>{
 
     return(
         <div>
-            <button onClick={getDataQuote}>Random Quote</button>
-            {<blockquote>{"“" + quoteData.content + "”"}</blockquote>}
-            <button onClick={linkToListQuotesPage}>
-            {quoteData.author}
-            </button>
+            <div className="random-button">
+                <Button
+                    endIcon={<AutorenewSharpIcon></AutorenewSharpIcon>}
+                    size="large"
+                    onClick={getDataQuote}
+                >
+                    Random Quote
+                </Button>
+            </div>
+
+            <div className="quote-section">
+                {<blockquote>{"“" + quoteData.content + "”"}</blockquote>}
+            </div>
+            
+            <div className="author-button">
+                <Button
+                    endIcon={<ArrowRightAltIcon/>}
+                    size={"large"}
+                    onClick={linkToListQuotesPage}
+                    fullWidth={true}
+                    style={{justifyContent: "space-between"}}
+                >
+                    {quoteData.author}
+                </Button>
+            </div>
         </div>
     )
 }
