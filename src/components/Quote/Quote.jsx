@@ -35,6 +35,7 @@ const Quote = () =>{
                     endIcon={<AutorenewSharpIcon></AutorenewSharpIcon>}
                     size="large"
                     onClick={getDataQuote}
+                    style={{fontSize:"16px"}}
                 >
                     Random Quote
                 </Button>
@@ -50,7 +51,7 @@ const Quote = () =>{
                     size={"large"}
                     onClick={linkToListQuotesPage}
                     fullWidth={true}
-                    style={{justifyContent: "space-between"}}
+                    style={{justifyContent: "space-between", fontSize:"20px"}}
                 >
                     {quoteData.author}
                 </Button>

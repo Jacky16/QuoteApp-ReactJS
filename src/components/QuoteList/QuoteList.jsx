@@ -14,6 +14,7 @@ const renderQuotes = quoteToRender =>{
         quoteToRender.map(e => <li key={e.content}>“{e.content}“</li>)
         )
     }
+    
     const QuoteList = () => {
         const [quotes,setQuotes] = useState({});
         
@@ -50,10 +51,6 @@ const renderQuotes = quoteToRender =>{
             </Button>
         </div>
     )
-}
-
-QuoteList.propTypes = {
-    //author: PropTypes.string.isRequired
 }
 
 export default QuoteList
